@@ -1,0 +1,139 @@
+-- CREATE DATABASE patient_health_record; Creating the DB
+-- USE patient_health_record; selecting the DB
+-- ******************Creating the Patient table*****************
+-- CREATE TABLE Patient (
+--     patient_id INT PRIMARY KEY AUTO_INCREMENT,
+--     name VARCHAR(100) NOT NULL,
+--     date_of_birth DATE NOT NULL,
+--     address VARCHAR(255),
+--     contact_number VARCHAR(20),
+--     insurance_information VARCHAR(255)
+-- ); 
+
+--  ******************Creating the Doctors table*****************
+-- CREATE TABLE Doctor (
+--     doctor_id INT PRIMARY KEY AUTO_INCREMENT,
+--     name VARCHAR(100) NOT NULL,
+--     specialization VARCHAR(100),
+--     contact_number VARCHAR(20)
+-- );
+
+-- ******************Creating the Consultation table*****************
+-- CREATE TABLE Consultation (
+--     consultation_id INT PRIMARY KEY AUTO_INCREMENT,
+--     patient_id INT,
+--     doctor_id INT,
+--     consultation_date DATE NOT NULL,
+--     symptoms TEXT,
+--     medical_history TEXT,
+--     FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
+--     FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
+-- );
+
+-- ******************Creating the Diagnosis table*****************
+-- CREATE TABLE Diagnosis (
+--     diagnosis_id INT PRIMARY KEY AUTO_INCREMENT,
+--     consultation_id INT,
+--     diagnosis_name VARCHAR(100) NOT NULL,
+--     description TEXT,
+--     FOREIGN KEY (consultation_id) REFERENCES Consultation(consultation_id)
+-- );
+
+-- ******************Creating the Medication table*****************
+-- CREATE TABLE Medication (
+--     medication_id INT PRIMARY KEY AUTO_INCREMENT,
+--     diagnosis_id INT,
+--     medication_name VARCHAR(100) NOT NULL,
+--     dosage VARCHAR(50),
+--     instructions TEXT,
+--     FOREIGN KEY (diagnosis_id) REFERENCES Diagnosis(diagnosis_id)
+--     );
+
+-- ******************Creating the Treatment Plan table*****************
+-- CREATE TABLE TreatmentPlan (
+--     treatment_plan_id INT PRIMARY KEY AUTO_INCREMENT,
+--     diagnosis_id INT,
+--     treatment_plan_details TEXT,
+--     duration VARCHAR(50),
+--     FOREIGN KEY (diagnosis_id) REFERENCES Diagnosis(diagnosis_id)
+-- );
+-- USE patient_health_record;
+
+-- **********Insert sample data into Patient table**********
+-- INSERT INTO Patient (name, date_of_birth, address, contact_number, insurance_information) VALUES
+-- ('John Doe', '1980-05-15', '123 Main St, Anytown, USA', '555-1234', 'Insurance A'),
+-- ('Jane Smith', '1992-08-22', '456 Oak Rd, Somewhere, USA', '555-5678', 'Insurance B'),
+-- ('Bob Johnson', '1975-03-10', '789 Pine Ave, Nowhere, USA', '555-9012', 'Insurance C'),
+-- ('Alice Brown', '1988-11-30', '101 Elm St, Anywhere, USA', '555-3456', 'Insurance A'),
+-- ('Charlie Davis', '1995-07-18', '202 Maple Dr, Everywhere, USA', '555-7890', 'Insurance B'),
+-- ('Eva White', '1982-01-25', '303 Cedar Ln, Someplace, USA', '555-2345', 'Insurance C'),
+-- ('Frank Miller', '1970-09-05', '404 Birch Rd, Otherville, USA', '555-6789', 'Insurance A'),
+-- ('Grace Taylor', '1998-04-12', '505 Walnut Ave, Thistown, USA', '555-0123', 'Insurance B'),
+-- ('Henry Wilson', '1985-12-08', '606 Spruce St, Thatcity, USA', '555-4567', 'Insurance C'),
+-- ('Ivy Moore', '1990-06-20', '707 Fir Blvd, Lastplace, USA', '555-8901', 'Insurance A');
+
+-- **********Insert sample data into Doctor table**********
+-- INSERT INTO Doctor (name, specialization, contact_number) VALUES
+-- ('Dr. Emily Clark', 'Cardiology', '555-1111'),
+-- ('Dr. Michael Lee', 'Pediatrics', '555-2222'),
+-- ('Dr. Sarah Johnson', 'Neurology', '555-3333'),
+-- ('Dr. David Brown', 'Orthopedics', '555-4444'),
+-- ('Dr. Lisa Chen', 'Dermatology', '555-5555'),
+-- ('Dr. James Wilson', 'Oncology', '555-6666'),
+-- ('Dr. Anna Kim', 'Psychiatry', '555-7777'),
+-- ('Dr. Robert Taylor', 'Gastroenterology', '555-8888'),
+-- ('Dr. Olivia Martinez', 'Endocrinology', '555-9999'),
+-- ('Dr. Thomas Anderson', 'General Practice', '555-0000');
+
+-- **********Insert sample data into Consultation table**********
+-- INSERT INTO Consultation (patient_id, doctor_id, consultation_date, symptoms, medical_history) VALUES
+-- (1, 1, '2023-01-15', 'Chest pain', 'Hypertension'),
+-- (2, 2, '2023-02-20', 'Fever, cough', 'Asthma'),
+-- (3, 3, '2023-03-25', 'Headache, dizziness', 'Migraines'),
+-- (4, 4, '2023-04-10', 'Joint pain', 'Arthritis'),
+-- (5, 5, '2023-05-05', 'Skin rash', 'Eczema'),
+-- (6, 6, '2023-06-12', 'Fatigue, weight loss', 'None'),
+-- (7, 7, '2023-07-18', 'Anxiety, insomnia', 'Depression'),
+-- (8, 8, '2023-08-22', 'Abdominal pain', 'Ulcers'),
+-- (9, 9, '2023-09-30', 'Excessive thirst', 'Diabetes'),
+-- (10, 10, '2023-10-05', 'Sore throat', 'Allergies');
+
+-- **********Insert sample data into Diagnosis table**********
+-- INSERT INTO Diagnosis (consultation_id, diagnosis_name, description) VALUES
+-- (1, 'Angina', 'Chest pain due to reduced blood flow to the heart'),
+-- (2, 'Bronchitis', 'Inflammation of the bronchial tubes'),
+-- (3, 'Tension headache', 'Headache caused by muscle contractions'),
+-- (4, 'Osteoarthritis', 'Degenerative joint disease'),
+-- (5, 'Contact dermatitis', 'Skin inflammation caused by contact with an irritant'),
+-- (6, 'Anemia', 'Low red blood cell count'),
+-- (7, 'Generalized anxiety disorder', 'Persistent and excessive worry'),
+-- (8, 'Gastritis', 'Inflammation of the stomach lining'),
+-- (9, 'Type 2 diabetes', 'Chronic condition affecting how the body processes glucose'),
+-- (10, 'Strep throat', 'Bacterial infection causing sore throat');
+
+-- **********Insert sample data into Medication table*********
+-- INSERT INTO Medication (diagnosis_id, medication_name, dosage, instructions) VALUES
+-- (1, 'Nitroglycerin', '0.4mg', 'Take under the tongue as needed for chest pain'),
+-- (2, 'Amoxicillin', '500mg', 'Take orally twice daily for 10 days'),
+-- (3, 'Ibuprofen', '400mg', 'Take orally every 6 hours as needed for pain'),
+-- (4, 'Acetaminophen', '500mg', 'Take orally every 6 hours as needed for pain'),
+-- (5, 'Hydrocortisone cream', '1%', 'Apply to affected area twice daily'),
+-- (6, 'Ferrous sulfate', '325mg', 'Take orally once daily with food'),
+-- (7, 'Sertraline', '50mg', 'Take orally once daily in the morning'),
+-- (8, 'Omeprazole', '20mg', 'Take orally once daily before breakfast'),
+-- (9, 'Metformin', '500mg', 'Take orally twice daily with meals'),
+-- (10, 'Penicillin', '500mg', 'Take orally four times daily for 10 days');
+
+-- **********Insert sample data into TreatmentPlan table**********
+-- INSERT INTO TreatmentPlan (diagnosis_id, treatment_plan_details, duration) VALUES
+-- (1, 'Daily exercise, low-fat diet, stress management', '3 months'),
+-- (2, 'Rest, increased fluid intake, avoid irritants', '2 weeks'),
+-- (3, 'Stress reduction techniques, regular sleep schedule', '1 month'),
+-- (4, 'Physical therapy, weight management, assistive devices', '6 months'),
+-- (5, 'Avoid allergens, use moisturizer, follow-up in 2 weeks', '2 weeks'),
+-- (6, 'Iron-rich diet, follow-up blood test in 1 month', '3 months'),
+-- (7, 'Weekly therapy sessions, daily meditation', '6 months'),
+-- (8, 'Bland diet, avoid alcohol and spicy foods', '4 weeks'),
+-- (9, 'Blood sugar monitoring, diet modification, regular exercise', 'Ongoing'),
+-- (10, 'Complete antibiotic course, gargle with salt water', '10 days');consultation
+

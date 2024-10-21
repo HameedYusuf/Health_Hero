@@ -1,0 +1,21 @@
+{
+  "name": "health-hero",
+  "version": "1.0.0",
+  "description": "Patient Health Record System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "concurrently \"nodemon server.js\" \"npm run dev --prefix client\"",
+    "client": "npm start --prefix client"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.3.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "concurrently": "^7.0.0"
+  }
+}
